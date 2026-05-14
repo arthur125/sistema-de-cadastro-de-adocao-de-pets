@@ -19,3 +19,9 @@ while True:
     print('3. Sair')
 
     opcao = input('Escolha a opção desejada: ')
+
+    # Sistema de descrição do animal
+    if opcao == '1':
+        input('Digite a idade do animal: ')
+        input('Digite o tamanho do animal (cm): ')
+        input('Digite o peso do animal (kg): ')
