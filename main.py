@@ -22,6 +22,14 @@ print('''
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+# Função para exibir os menus
+def show_menu(menu):
+    clear_screen()
+    if(menu == ''):
+        print('1. Cadastrar animal')
+        print('2. Ver animais')
+        print('3. Voltar')
+
 # Sistema de opção do cadastro de pets
 while True:
     print('Sistema de Cadastro de Adoção de Pets')
@@ -35,8 +43,8 @@ while True:
 
     # Sistema de descrição do animal
     if opcao == '1':
-        clear_screen()
-        print('1. Cadastrar animal')
-        print('2. Ver animais')
-        print('3. Voltar')
         opcao = input('Escolha a opção desejada:')
+        if opcao == '1':
+            clear_screen()
+            print('Novo Animal')
+            anome = input('Digite ')
