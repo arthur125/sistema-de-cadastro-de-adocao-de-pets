@@ -34,7 +34,7 @@ def clear_screen():
 # Função para exibir os menus
 def show_menu(menu):
     clear_screen()
-    if(menu == '1'):
+    if(menu == 'cliente'):
         print('1. Cadastrar animal')
         print('2. Ver animais')
         print('3. Voltar')
@@ -50,6 +50,7 @@ while True:
 
     # Sistema de descrição do animal
     if opcao == '1':
+        show_menu('cliente')
         opcao = input('Escolha a opção desejada:')
         if opcao == '1':
             clear_screen()
