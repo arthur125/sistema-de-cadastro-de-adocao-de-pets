@@ -2,9 +2,9 @@ import os
 
 # Declaração das variáveis globais
 opcao = 0
-usuario = []
-animal = []
-adocao = []
+usuarios = []
+animais = []
+adocoes = []
 
 # Função para limpar a tela
 def clear_screen():
@@ -52,7 +52,7 @@ def show_menu(menu, opcoes = True):
         print('4. Sair')
 # Menu de usuários        
     elif (menu == 'usuario'):
-        print('USUÁRIOS')
+        print('USUÁRIO')
         print(menu_line)
         print('1. Novo usuário')
         print('2. Ver usuários')
@@ -63,7 +63,7 @@ def show_menu(menu, opcoes = True):
         print('VER USUÁRIOS')
 # Menu de animais
     elif (menu == 'animal'):
-        print('ANIMAIS')
+        print('ANIMAL')
         print(menu_line)
         print('1. Cadastrar animal')
         print('2. Ver animais')
@@ -97,34 +97,90 @@ def show_menu(menu, opcoes = True):
 # Sistema de cadastros
 def cadastrar(tipo):
 # Cadastro de usuários
-    if(tipo == 'usuario'):
-        codigo = len(usuario) + 1
+    if(tipo == 'usuarios'):
+        codigo = len(usuarios) + 1
         nome = input('Digite o nome do usuário: ')
         email = input('Digite o e-mail do usuário: ')
 # Se não existir, adicionar usuário a matriz
-        usuario.append([codigo, nome, email])
+        usuarios.append([codigo, nome, email])
 # Cadastro de animais
-    elif(tipo == 'animal'):
-        codigo = len(animal) + 1
+    elif(tipo == 'animais'):
+        codigo = len(animais) + 1
         nome = input('Digite o nome do animal: ')
         idade = float(input('Digite a idade do animal: '))
         raca = input('Digite a raça do animal:')
         porte = input('Digite o porte do animal: ')
 # Adicionar animal a matriz
-        animal.append([codigo, nome, idade, raca, porte])
+        animais.append([codigo, nome, idade, raca, porte])
 # Sistema de adoção
-    elif(tipo == 'adocao'):
-        numero = len(adocao) + 1
+    elif(tipo == 'adocoes'):
+        numero = len(adocoes) + 1
         usuario = int(input('Digite o código do usuário: '))
         animal = int(input('Digite o código do animal: '))
 # Adicionar o animal a matriz
-        adocao.append([numero, usuario, animal])
+        adocoes.append([numero, usuarios, animais])
 
 # Sistema de listas
 def listar(tipo):
-    if(tipo == 'usuario'):
-        for usuario in usuario:
+    if(tipo == 'usuarios'):
+        for usuario in usuarios:
             print(f'username {usuario[0]} - {usuario[1]} - {usuario[2]}')
-    elif(tipo == 'animal'):
-        for animal in animal:
+    elif(tipo == 'animais'):
+        for animal in animais:
             print(f'código {animal[0]} - {animal[1]} - {animal[2]}')
+    elif(tipo == 'adocoes'):
+        for adocao in adocoes:
+            print(f'adocao {adocao[0]} - usuário {usuarios[adocao[1]-1][1]} - animal {animais[adocao[2]-1][1]} - adocao = {adocoes[3]}')
+    else:
+        print('Não há valores a exibir...')
+        pressione_enter()
+
+while True:
+    show_menu('principal')
+
+    if(opcao == '1'):
+        show_menu('usuario')
+        if(opcao == '1'):
+            show_menu('novo_usuario', False)
+            cadastrar('usuarios') 
+        elif(opcao == '2'):
+            show_menu('usuario_lista', False)
+            listar('usuarios')
+            pressione_enter()
+        elif(opcao == '4'):
+            print('VOLTAR')
+        else:
+            print('Opção inválida...')
+    elif(opcao == '2'):
+        show_menu('animal')
+        if(opcao == '1'):
+            show_menu('animal_cadastro', False)
+            cadastrar('animais') 
+        elif(opcao == '2'):
+            show_menu('animal_lista', False)
+            listar('animais')
+            pressione_enter()
+        elif(opcao == '4'):
+            print('VOLTAR')
+        else:
+            print('Opção inválida...')
+    elif(opcao == '3'):
+        show_menu('adocao')
+        if(opcao == '1'):
+            show_menu('animal_adocao', False)
+            cadastrar('adocoes') 
+        elif(opcao == '2'):
+            show_menu('animal_adotados_lista', False)
+            listar('adocoes')
+            pressione_enter()
+        elif(opcao == '4'):
+            print('VOLTAR')
+        else:
+            print('Opção inválida...')
+    elif(opcao == '4'):
+        break
+    else:
+        print('Opção inválida! Digite uma opção do menu...')
+
+clear_screen()
+print('O programa foi encerrado.')
