@@ -1,2 +1,2 @@
 # sistema-de-cadastro-de-adocao-de-pets
-Armazena dados de animais (tipo, idade, porte). Permite filtrar a busca (ex: "mostrar apenas cães de porte pequeno").
+Armazena dados de animais (tipo, idade, porte). Desafio: Criar uma função que  impeça que um cliente adote mais de um animal. 
