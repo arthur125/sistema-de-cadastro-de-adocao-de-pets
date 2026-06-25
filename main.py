@@ -2,7 +2,7 @@ import os
 
 # Declaração das variáveis globais
 opcao = 0
-usuarios = []
+clientes = []
 animais = []
 adocoes = []
 
@@ -17,50 +17,53 @@ def pressione_enter():
 # Função para mostrar a logo
 def show_title():
     print('''
-    ███████╗██╗███████╗████████╗███████╗███╗   ███╗ █████╗     ██████╗ 
-    ██╔════╝██║██╔════╝╚══██╔══╝██╔════╝████╗ ████║██╔══██╗    ██╔══██╗
-    ███████╗██║███████╗   ██║   █████╗  ██╔████╔██║███████║    ██║  ██║
-    ╚════██║██║╚════██║   ██║   ██╔══╝  ██║╚██╔╝██║██╔══██║    ██║  ██║
-    ███████║██║███████║   ██║   ███████╗██║ ╚═╝ ██║██║  ██║    ██████╔╝
-    ╚══════╝╚═╝╚══════╝   ╚═╝   ╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝    ╚═════╝ 
-    ███████╗     █████╗ ██████╗  ██████╗  ██████╗ █████╗  ██████╗      
-    ██╔════╝    ██╔══██╗██╔══██╗██╔═══██╗██╔════╝██╔══██╗██╔═══██╗     
-    █████╗      ███████║██║  ██║██║   ██║██║     ███████║██║   ██║     
-    ██╔══╝      ██╔══██║██║  ██║██║   ██║██║     ██╔══██║██║   ██║     
-    ███████╗    ██║  ██║██████╔╝╚██████╔╝╚██████╗██║  ██║╚██████╔╝     
-    ╚══════╝    ╚═╝  ╚═╝╚═════╝  ╚═════╝  ╚═════╝╚═╝  ╚═╝ ╚═════╝      
-    ██████╗ ███████╗    ██████╗ ███████╗████████╗███████╗              
-    ██╔══██╗██╔════╝    ██╔══██╗██╔════╝╚══██╔══╝██╔════╝              
-    ██║  ██║█████╗      ██████╔╝█████╗     ██║   ███████╗              
-    ██║  ██║██╔══╝      ██╔═══╝ ██╔══╝     ██║   ╚════██║              
-    ██████╔╝███████╗    ██║     ███████╗   ██║   ███████║              
-    ╚═════╝ ╚══════╝    ╚═╝     ╚══════╝   ╚═╝   ╚══════╝              
-                                                    ''')
+    ███████╗██╗███████╗████████╗███████╗███╗   ███╗ █████╗     ██████╗ ███████╗                                
+    ██╔════╝██║██╔════╝╚══██╔══╝██╔════╝████╗ ████║██╔══██╗    ██╔══██╗██╔════╝                                
+    ███████╗██║███████╗   ██║   █████╗  ██╔████╔██║███████║    ██║  ██║█████╗                                  
+    ╚════██║██║╚════██║   ██║   ██╔══╝  ██║╚██╔╝██║██╔══██║    ██║  ██║██╔══╝                                  
+    ███████║██║███████║   ██║   ███████╗██║ ╚═╝ ██║██║  ██║    ██████╔╝███████╗                                
+    ╚══════╝╚═╝╚══════╝   ╚═╝   ╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝    ╚═════╝ ╚══════╝                                
+     ██████╗ █████╗ ██████╗  █████╗ ███████╗████████╗██████╗  ██████╗     ██████╗ ███████╗                     
+    ██╔════╝██╔══██╗██╔══██╗██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██╔═══██╗    ██╔══██╗██╔════╝                     
+    ██║     ███████║██║  ██║███████║███████╗   ██║   ██████╔╝██║   ██║    ██║  ██║█████╗                       
+    ██║     ██╔══██║██║  ██║██╔══██║╚════██║   ██║   ██╔══██╗██║   ██║    ██║  ██║██╔══╝                       
+    ╚██████╗██║  ██║██████╔╝██║  ██║███████║   ██║   ██║  ██║╚██████╔╝    ██████╔╝███████╗                     
+    ╚═════╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝     ╚═════╝ ╚══════╝                     
+     █████╗ ██████╗  ██████╗  ██████╗ █████╗  ██████╗     ██████╗ ███████╗    ██████╗ ███████╗████████╗███████╗
+    ██╔══██╗██╔══██╗██╔═══██╗██╔════╝██╔══██╗██╔═══██╗    ██╔══██╗██╔════╝    ██╔══██╗██╔════╝╚══██╔══╝██╔════╝
+    ███████║██║  ██║██║   ██║██║     ███████║██║   ██║    ██║  ██║█████╗      ██████╔╝█████╗     ██║   ███████╗
+    ██╔══██║██║  ██║██║   ██║██║     ██╔══██║██║   ██║    ██║  ██║██╔══╝      ██╔═══╝ ██╔══╝     ██║   ╚════██║
+    ██║  ██║██████╔╝╚██████╔╝╚██████╗██║  ██║╚██████╔╝    ██████╔╝███████╗    ██║     ███████╗   ██║   ███████║
+    ╚═╝  ╚═╝╚═════╝  ╚═════╝  ╚═════╝╚═╝  ╚═╝ ╚═════╝     ╚═════╝ ╚══════╝    ╚═╝     ╚══════╝   ╚═╝   ╚══════╝             
+                                                                                                            ''')
 
 # Função para exibir os menus
 def show_menu(menu, opcoes = True):
     global opcao
-    menu_line = '---------------------------'
+    menu_line = '==============================='
     clear_screen()
     show_title()
+    print(menu_line)
+    print('SEJA MUITO BEM-VINDO!')
+    print(menu_line)
 
 # Menu principal
     if (menu == 'principal'):
-        print('1. Usuários')
+        print('1. Clientes')
         print('2. Animais')
         print('3. Adoções')
         print('4. Sair')
-# Menu de usuários        
-    elif (menu == 'usuario'):
-        print('USUÁRIO')
+# Menu de clientes        
+    elif (menu == 'cliente'):
+        print('CLIENTE')
         print(menu_line)
-        print('1. Novo usuário')
-        print('2. Ver usuários')
+        print('1. Novo cliente')
+        print('2. Ver clientes')
         print('3. Voltar')
-    elif (menu == 'novo_usuario'):
-        print('NOVO USUÁRIO')
-    elif (menu == 'usuario_lista'):
-        print('VER USUÁRIOS')
+    elif (menu == 'novo_cliente'):
+        print('NOVO CLIENTE')
+    elif (menu == 'cliente_lista'):
+        print('VER CLIENTES')
 # Menu de animais
     elif (menu == 'animal'):
         print('ANIMAL')
@@ -78,14 +81,11 @@ def show_menu(menu, opcoes = True):
         print(menu_line)
         print('1. Adotar animal')
         print('2. Ver animais adotados')
-        print('3. Cancelar adoções')
-        print('4. Voltar')
+        print('3. Voltar')
     elif (menu == 'animal_adocao'):
         print('ADOTAR ANIMAL')
     elif (menu == 'animal_adotados_lista'):
         print('VER ANIMAIS ADOTADOS')
-    elif (menu == 'adocao_cancelamento'):
-        print('CANCELAR ADOÇÕES')
     else:
         pass
 
@@ -96,61 +96,74 @@ def show_menu(menu, opcoes = True):
 
 # Sistema de cadastros
 def cadastrar(tipo):
-# Cadastro de usuários
-    if(tipo == 'usuarios'):
-        codigo = len(usuarios) + 1
-        nome = input('Digite o nome do usuário: ')
-        email = input('Digite o e-mail do usuário: ')
-# Se não existir, adicionar usuário a matriz
-        usuarios.append([codigo, nome, email])
+# Cadastro de clientes
+    if(tipo == 'clientes'):
+        codigo = len(clientes) + 1
+        nome = input('Digite o nome do cliente: ')
+        email = input('Digite o e-mail do cliente: ')
+# Se não existir, adicionar cliente a matriz
+        clientes.append([codigo, nome, email])
 # Cadastro de animais
     elif(tipo == 'animais'):
         codigo = len(animais) + 1
         nome = input('Digite o nome do animal: ')
         idade = float(input('Digite a idade do animal: '))
-        raca = input('Digite a raça do animal:')
+        raca = input('Digite a raça do animal: ')
         porte = input('Digite o porte do animal: ')
 # Adicionar animal a matriz
         animais.append([codigo, nome, idade, raca, porte])
 # Sistema de adoção
     elif(tipo == 'adocoes'):
         numero = len(adocoes) + 1
-        usuario = int(input('Digite o código do usuário: '))
+        cliente = int(input('Digite o código do cliente: '))
+# Função para verificar se tal cliente já adotou um animal (Mais atenção pra esse parte galera)
+        ja_adotou = any(adocao[1] == cliente for adocao in adocoes)
+        if ja_adotou:
+            print('Esse cliente já adotou um animal.')
+            pressione_enter()
+            return
         animal = int(input('Digite o código do animal: '))
 # Adicionar o animal a matriz
-        adocoes.append([numero, usuarios, animais])
+        adocoes.append([numero, cliente, animal])
 
 # Sistema de listas
 def listar(tipo):
-    if(tipo == 'usuarios'):
-        for usuario in usuarios:
-            print(f'username {usuario[0]} - {usuario[1]} - {usuario[2]}')
+    if(tipo == 'clientes'):
+        for cliente in clientes:
+            print(f'Código: {cliente[0]} - Nome: {cliente[1]} - Email: {cliente[2]}')
     elif(tipo == 'animais'):
         for animal in animais:
-            print(f'código {animal[0]} - {animal[1]} - {animal[2]}')
+            print(f'Código: {animal[0]} - Nome: {animal[1]} - Idade: {animal[2]} - Raça: {animal[3]} - Porte: {animal[4]}')
     elif(tipo == 'adocoes'):
         for adocao in adocoes:
-            print(f'adocao {adocao[0]} - usuário {usuarios[adocao[1]-1][1]} - animal {animais[adocao[2]-1][1]} - adocao = {adocoes[3]}')
+            cliente = next((c for c in clientes if c[0] == adocao[1]), None)
+            animal = next((a for a in animais if a[0] == adocao[2]), None)
+            nome_cliente = cliente[1] if cliente else '???'
+            nome_animal = animal[1] if animal else '???'
+            print(f'Adoção: {adocao[0]} - Cliente: {nome_cliente} - Animal: {nome_animal}')
     else:
         print('Não há valores a exibir...')
         pressione_enter()
 
+# Loop principal
 while True:
     show_menu('principal')
 
+# Menu de clientes
     if(opcao == '1'):
-        show_menu('usuario')
+        show_menu('cliente')
         if(opcao == '1'):
-            show_menu('novo_usuario', False)
-            cadastrar('usuarios') 
+            show_menu('novo_cliente', False)
+            cadastrar('clientes') 
         elif(opcao == '2'):
-            show_menu('usuario_lista', False)
-            listar('usuarios')
+            show_menu('cliente_lista', False)
+            listar('clientes')
             pressione_enter()
-        elif(opcao == '4'):
+        elif(opcao == '3'):
             print('VOLTAR')
         else:
             print('Opção inválida...')
+# Menu de animais
     elif(opcao == '2'):
         show_menu('animal')
         if(opcao == '1'):
@@ -160,10 +173,11 @@ while True:
             show_menu('animal_lista', False)
             listar('animais')
             pressione_enter()
-        elif(opcao == '4'):
+        elif(opcao == '3'):
             print('VOLTAR')
         else:
             print('Opção inválida...')
+# Menu de adoções
     elif(opcao == '3'):
         show_menu('adocao')
         if(opcao == '1'):
@@ -173,14 +187,16 @@ while True:
             show_menu('animal_adotados_lista', False)
             listar('adocoes')
             pressione_enter()
-        elif(opcao == '4'):
+        elif(opcao == '3'):
             print('VOLTAR')
         else:
             print('Opção inválida...')
+# Menu para voltar
     elif(opcao == '4'):
         break
     else:
         print('Opção inválida! Digite uma opção do menu...')
 
+# Encerramento do programa
 clear_screen()
-print('O programa foi encerrado.')
+print('O programa foi encerrado. Volte sempre.')
